@@ -1,6 +1,8 @@
 package webapp;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,28 @@ public class Hello extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/hmml;charset=UTF-8");
+		
+		try (PrintWriter out = response.getWriter()){
+			out.println("<h2>Olá</h2>");
+			out.println("<h2>Sua soma é : </h2>");
+			
+			double n1 = Double.parseDouble(request.getParameter("n1"));
+			double n2 = Double.parseDouble(request.getParameter("n2"));
+			
+			double sum = n1+n2;
+			
+			out.println("<h2>Sua soma é "+sum+"</h2>");
+			
+			try {
+				
+			}catch (Exception e) {
+				out.println("<h3>Ocorreu um erro nos parametros :"+e.getMessage()+"</h3>");
+			}
+			
+				
+			
+		}
 	}
 
 	/**
